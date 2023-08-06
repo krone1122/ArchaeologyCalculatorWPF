@@ -1,0 +1,51 @@
+﻿<Window x:Class="ArchaeologyCalculatorWPF.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ArchaeologyCalculatorWPF"
+        mc:Ignorable="d"
+        Title="Archaeology Calculator" Height="490" Width="490" Loaded="Window_Loaded">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <Label>Artifact Name:</Label>
+            <TextBox Margin="5,0,5,5" Text="{Binding Artifact.Name}"></TextBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Label>Quantity:</Label>
+            <TextBox Margin="5,0,5,5" Text="{Binding Artifact.QuantityOwned}"></TextBox>
+        </StackPanel>
+        <StackPanel  Grid.Column="2">
+            <Label>Inventory Space:</Label>
+            <Slider Name="sliderInvSpace" Width="141" TickPlacement="TopLeft" Value="26" Maximum="28" Minimum="1" SmallChange="1" LargeChange="10" AutoToolTipPlacement="TopLeft"/>
+        </StackPanel>
+        <StackPanel Grid.ColumnSpan="3" Grid.Row="1">
+            <Label>Materials Needed:</Label>
+            <DataGrid Name="dgMaterials" AutoGenerateColumns="False" CanUserAddRows="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                    <DataGridTextColumn Header="Amount Needed" Binding="{Binding AmountNeeded}" />
+                    <DataGridTextColumn Header="Amount Owned" Binding="{Binding AmountOwned}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <Button Grid.Row="2" Height="50" Margin="5" Click="Compute_Click">COMPUTE</Button>
+        <Button Grid.Row="2" Grid.Column="1" Height="50" Margin="5" Click="Clear_Click">CLEAR</Button>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="3">
+            <Label>Results:</Label>
+            <TextBlock Text="{Binding Artifact.Results}"></TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>
