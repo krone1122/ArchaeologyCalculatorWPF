@@ -29,7 +29,19 @@
         </StackPanel>
         <StackPanel  Grid.Column="2">
             <Label>Inventory Space:</Label>
-            <Slider Name="sliderInvSpace" Width="141" TickPlacement="TopLeft" Value="26" Maximum="28" Minimum="1" SmallChange="1" LargeChange="10" AutoToolTipPlacement="TopLeft"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.RowSpan="2" Height="20" Name="txtNumeric"></TextBox>
+                <Button Grid.Column="1" Name="NumUpButton" Click="NumUpButton_Click" Content="▲"></Button>
+                <Button Grid.Column="1" Grid.Row="1" Name="NumDownButton" Click="NumDownButton_Click" Content="▼"></Button>
+            </Grid>
         </StackPanel>
         <StackPanel Grid.ColumnSpan="3" Grid.Row="1">
             <Label>Materials Needed:</Label>

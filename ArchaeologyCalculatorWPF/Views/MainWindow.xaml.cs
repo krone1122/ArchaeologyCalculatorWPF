@@ -24,6 +24,8 @@ namespace ArchaeologyCalculatorWPF.Views
     public partial class MainWindow : Window
     {
         internal MainWindowViewModel _mainWindowViewModel;
+        private int currentNumericValue = 26;
+
 
         public MainWindow()
         {
@@ -31,6 +33,7 @@ namespace ArchaeologyCalculatorWPF.Views
             _mainWindowViewModel = new();
 
             DataContext = _mainWindowViewModel;
+            SetNumericText();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -40,13 +43,37 @@ namespace ArchaeologyCalculatorWPF.Views
 
         private void Compute_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindowViewModel.ComputeResults(sliderInvSpace.Value);
+            _mainWindowViewModel.ComputeResults(GetNumericValue());
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             _mainWindowViewModel.ClearScreen();
-            sliderInvSpace.Value = 26;
+
+            currentNumericValue = 26;
+            SetNumericText();
+        }
+
+        private void NumDownButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentNumericValue--;
+            SetNumericText();
+        }
+
+        private void NumUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentNumericValue++;
+            SetNumericText();
+        }
+
+        private void SetNumericText()
+        {
+            txtNumeric.Text = currentNumericValue.ToString();
+        }
+
+        private int GetNumericValue()
+        {
+            return int.Parse(txtNumeric.Text);
         }
     }
 }
